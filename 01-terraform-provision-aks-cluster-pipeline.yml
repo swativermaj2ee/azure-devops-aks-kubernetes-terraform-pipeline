@@ -79,7 +79,8 @@ stages:
               displayName: Terraform Init
               inputs:
                 command: 'init'
-                workingDirectory: '-lock=false $(Pipeline.Workspace)/terraform-manifests-out'
+                workingDirectory: '$(Pipeline.Workspace)/terraform-manifests-out'
+                commandOptions: '-lock=false'
                 backendType: 'azurerm'
                 backendServiceArm: 'AzureDevOps-Service-connection'
                 backendAzureRmResourceGroupName: 'terraform-storage-rg'
@@ -100,9 +101,9 @@ stages:
               displayName: Terraform Apply
               inputs:
                 command: 'apply'
-                workingDirectory: '-lock=false $(Pipeline.Workspace)/terraform-manifests-out'
+                workingDirectory: '$(Pipeline.Workspace)/terraform-manifests-out'
                 environmentServiceName: 'AzureDevOps-Service-connection'
-                commandOptions: '$(Pipeline.Workspace)/terraform-manifests-out/$(DEV_ENVIRONMENT)-$(Build.BuildId).out'
+                commandOptions: '-lock=false  $(Pipeline.Workspace)/terraform-manifests-out/$(DEV_ENVIRONMENT)-$(Build.BuildId).out'
                 allowTelemetryCollection: false
 
 # Stage-2: Deploy Stages for Dev & QA
@@ -131,7 +132,8 @@ stages:
               displayName: Terraform Init
               inputs:
                 command: 'init'
-                workingDirectory: '-lock=false $(Pipeline.Workspace)/terraform-manifests-out'
+                workingDirectory: '$(Pipeline.Workspace)/terraform-manifests-out'
+                commandOptions: '-lock=false'
                 backendType: 'azurerm'
                 backendServiceArm: 'AzureDevOps-Service-connection'
                 backendAzureRmResourceGroupName: 'terraform-storage-rg'
@@ -143,9 +145,9 @@ stages:
               displayName: Terraform Plan
               inputs:
                 command: 'plan'
-                workingDirectory: '-lock=false $(Pipeline.Workspace)/terraform-manifests-out'
+                workingDirectory: '$(Pipeline.Workspace)/terraform-manifests-out'
                 environmentServiceName: 'AzureDevOps-Service-connection'
-                commandOptions: '-var ssh_public_key=$(sshkey.secureFilePath) -var environment=$(QA_ENVIRONMENT) -out $(Pipeline.Workspace)/terraform-manifests-out/$(QA_ENVIRONMENT)-$(Build.BuildId).out'
+                commandOptions: '-lock=false  -var ssh_public_key=$(sshkey.secureFilePath) -var environment=$(QA_ENVIRONMENT) -out $(Pipeline.Workspace)/terraform-manifests-out/$(QA_ENVIRONMENT)-$(Build.BuildId).out'
                 allowTelemetryCollection: false
             - task: TerraformCLI@0
               displayName: Terraform Apply
