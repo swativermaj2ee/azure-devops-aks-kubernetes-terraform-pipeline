@@ -105,7 +105,7 @@ stages:
                 command: 'apply'
                 workingDirectory: '$(Pipeline.Workspace)/terraform-manifests-out'
                 environmentServiceName: 'AzureDevOps-Service-connection'
-                commandOptions: '-lock=false -var client_id=$(client_id) -var client_secret=$(client_secret) $(Pipeline.Workspace)/terraform-manifests-out/$(DEV_ENVIRONMENT)-$(Build.BuildId).out'
+                commandOptions: '-lock=false -var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_public_key=$(sshkey.secureFilePath) $(Pipeline.Workspace)/terraform-manifests-out/$(DEV_ENVIRONMENT)-$(Build.BuildId).out'
                 allowTelemetryCollection: false
 
 # Stage-2: Deploy Stages for Dev & QA
@@ -135,7 +135,6 @@ stages:
               inputs:
                 command: 'init'
                 workingDirectory: '$(Pipeline.Workspace)/terraform-manifests-out'
-                commandOptions: '-lock=false -var client_id=$(client_id) -var client_secret=$(client_secret)'
                 backendType: 'azurerm'
                 backendServiceArm: 'AzureDevOps-Service-connection'
                 backendAzureRmResourceGroupName: 'terraform-storage-rg'
@@ -157,5 +156,5 @@ stages:
                 command: 'apply'
                 workingDirectory: '$(Pipeline.Workspace)/terraform-manifests-out'
                 environmentServiceName: 'AzureDevOps-Service-connection'
-                commandOptions: '-lock=false -var client_id=$(client_id) -var client_secret=$(client_secret) $(Pipeline.Workspace)/terraform-manifests-out/$(QA_ENVIRONMENT)-$(Build.BuildId).out'
+                commandOptions: '-lock=false -var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_public_key=$(sshkey.secureFilePath) $(Pipeline.Workspace)/terraform-manifests-out/$(QA_ENVIRONMENT)-$(Build.BuildId).out'
                 allowTelemetryCollection: false
