@@ -40,8 +40,8 @@ stages:
           backendType: 'azurerm'
           backendServiceArm: 'terraform-aks-azurerm-svc-con'
           backendAzureRmResourceGroupName: 'terraform-storage-rg'
-          backendAzureRmStorageAccountName: 'terraformstatexlrwdrzs'
-          backendAzureRmContainerName: 'tfstatefiles'
+          backendAzureRmStorageAccountName: 'tfstatestorageaccountxyz'
+          backendAzureRmContainerName: 'terraform-state-file-container'
           backendAzureRmKey: 'aks-base.tfstate'
           allowTelemetryCollection: false
       - task: TerraformCLI@0
@@ -83,8 +83,8 @@ stages:
                 backendType: 'azurerm'
                 backendServiceArm: 'terraform-aks-azurerm-svc-con'
                 backendAzureRmResourceGroupName: 'terraform-storage-rg'
-                backendAzureRmStorageAccountName: 'terraformstatexlrwdrzs'
-                backendAzureRmContainerName: 'tfstatefiles'
+                 backendAzureRmStorageAccountName: 'tfstatestorageaccountxyz'
+                 backendAzureRmContainerName: 'terraform-state-file-container'
                 backendAzureRmKey: 'aks-$(DEV_ENVIRONMENT).tfstate'
                 allowTelemetryCollection: false
             - task: TerraformCLI@0
@@ -134,8 +134,8 @@ stages:
                 backendType: 'azurerm'
                 backendServiceArm: 'terraform-aks-azurerm-svc-con'
                 backendAzureRmResourceGroupName: 'terraform-storage-rg'
-                backendAzureRmStorageAccountName: 'terraformstatexlrwdrzs'
-                backendAzureRmContainerName: 'tfstatefiles'
+                backendAzureRmStorageAccountName: 'tfstatestorageaccountxyz'
+                backendAzureRmContainerName: 'terraform-state-file-container'
                 backendAzureRmKey: 'aks-$(QA_ENVIRONMENT).tfstate'
                 allowTelemetryCollection: false
             - task: TerraformCLI@0
