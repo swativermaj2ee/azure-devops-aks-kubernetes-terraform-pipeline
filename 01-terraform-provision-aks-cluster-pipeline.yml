@@ -56,7 +56,6 @@ stages:
         inputs:
           command: 'validate'
           workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-manifests-new'
-          commandOptions: '-var ssh_public_key=$(sshkey.secureFilePath) -var client_id=$(client_id) -var client_secret=$(client_secret)'
           allowTelemetryCollection: false
 
 # Stage-2: Deploy Stages for Dev & QA
