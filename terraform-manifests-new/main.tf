@@ -53,10 +53,10 @@ terraform {
   }
   
   backend "azurerm" {
-    storage_account_name="tfstatestorageaccountxyz" #OVERRIDE in TERRAFORM init
+   /*  storage_account_name="tfstatestorageaccountxyz" #OVERRIDE in TERRAFORM init
     access_key="<<storage_account_key>>" #OVERRIDE in TERRAFORM init
     key="kubernetes-dev.tfstate" #OVERRIDE in TERRAFORM init
-    container_name="terraform-state-file-container" #OVERRIDE in TERRAFORM init
+    container_name="terraform-state-file-container" #OVERRIDE in TERRAFORM init */
   }
 }
 
