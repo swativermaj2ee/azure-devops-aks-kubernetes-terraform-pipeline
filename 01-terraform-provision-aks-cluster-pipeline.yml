@@ -37,13 +37,7 @@ stages:
       - task: ms-devlabs.custom-terraform-tasks.custom-terraform-installer-task.TerraformInstaller@0
         displayName: Terraform Install
         inputs:
-          terraformVersion: 'latest'
-
-      - task: TerraformCLI@0
-        inputs:
-          command: 'destroy'
-          environmentServiceName: 'AzureDevOps-Service-connection'
-          allowTelemetryCollection: true
+          terraformVersion: 'latest'      
 
       - task: TerraformCLI@0
         displayName: Terraform Init
@@ -89,6 +83,7 @@ stages:
               name: sshkey
               inputs:
                 secureFile: 'aksprodsshkey.pub'
+            
             - task: TerraformCLI@0
               displayName: Terraform Init
               inputs:
