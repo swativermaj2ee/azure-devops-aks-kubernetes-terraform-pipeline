@@ -38,6 +38,13 @@ stages:
         displayName: Terraform Install
         inputs:
           terraformVersion: 'latest'
+
+      - task: TerraformCLI@0
+        inputs:
+          command: 'destroy'
+          environmentServiceName: 'AzureDevOps-Service-connection'
+          allowTelemetryCollection: true
+
       - task: TerraformCLI@0
         displayName: Terraform Init
         inputs:
