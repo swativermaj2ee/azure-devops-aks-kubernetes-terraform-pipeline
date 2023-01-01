@@ -24,6 +24,10 @@ variable cluster_name {
   default = "k8stest"
 }
 
+variable acr_name {
+  default = "acr"
+}
+
 variable resource_group {
   default = "kubernetes"
 }
